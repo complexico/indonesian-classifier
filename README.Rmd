@@ -1,0 +1,19 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Indonesian Classifier
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This repository tracks the version of code for Cosine Similarity analysis performed by Gede Primahadi W. Rajeg as part of a research project concerning Indonesian Classifier (lead author: Karlina Denistia, Ph.D.). See the main [Open Science Framework (OSF) repository](https://osf.io/zr29a/) for a more complete set of materials.
