@@ -1,0 +1,3 @@
+condition_group	.y.	p	p.adj	p.format	p.signif	method
+Within one classifier	cossim	5.226784684872845e-259	9.999999999999994e-259	<2e-16	****	Kruskal-Wallis
+Between classifiers	cossim	6.427085494007863e-170	6.399999999999998e-170	<2e-16	****	Kruskal-Wallis

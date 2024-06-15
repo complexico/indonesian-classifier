@@ -1,0 +1,7 @@
+condition_group	noun_compared	mean_cosim	sd_cosim	median_cosim	IQR_cosim
+buah	Nouns all forms with *BUAH*	0.2365	0.085	0.2277	0.1081
+buah	'Affixed' nouns with *BUAH*	0.2648	0.0863	0.2569	0.1104
+buah	'Non-Affixed' nouns with *BUAH*	0.2317	0.0842	0.2225	0.1058
+orang	Nouns all forms with *ORANG*	0.2374	0.0876	0.2295	0.1108
+orang	'Affixed' nouns with *ORANG*	0.2527	0.0829	0.2462	0.1053
+orang	'Non-Affixed' nouns with *ORANG*	0.2362	0.0959	0.225	0.1193
