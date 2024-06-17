@@ -164,6 +164,16 @@ cosim_ekor_buah_df <- cosim_ekor_buah |>
   mutate(noun_compared = "NounsAllForms with 'ekor' and 'buah'") |> 
   filter(noun_w_ekor != noun_w_buah) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor, noun_w_buah)), .keep_all = TRUE)
+
+cosim_ekor_buah_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-ekor-buah.tsv")
   
 #### 1.1 Cosine similarities between nouns modified by "ekor" & "buah" AFFIXED forms =====
 cosim_ekor_buah_affixed <- wordVectors::cosineSimilarity(vsm_with_ekor_affixed_mtx, vsm_with_buah_affixed_mtx)
@@ -176,6 +186,16 @@ cosim_ekor_buah_affixed_df <- cosim_ekor_buah_affixed |>
   mutate(noun_compared = "NounsAffixedForms with 'ekor' and 'buah'") |> 
   filter(noun_w_ekor != noun_w_buah) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor, noun_w_buah)), .keep_all = TRUE)
+
+cosim_ekor_buah_affixed_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-ekor-buah-affixed.tsv")
   
 #### 1.2 Cosine similarities between nouns modified by "ekor" & "buah" NON-AFFIXED forms =====
 cosim_ekor_buah_noaffix <- wordVectors::cosineSimilarity(vsm_with_ekor_noaffix_mtx, vsm_with_buah_noaffix_mtx)
@@ -188,6 +208,16 @@ cosim_ekor_buah_noaffix_df <- cosim_ekor_buah_noaffix |>
   mutate(noun_compared = "NounsNoAffixForms with 'ekor' and 'buah'") |> 
   filter(noun_w_ekor != noun_w_buah) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor, noun_w_buah)), .keep_all = TRUE)
+
+cosim_ekor_buah_noaffix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-ekor-buah-noaffixed.tsv")
   
 ### 2. Cosine similarities between nouns modified by "ekor" & "orang" ALL forms =====
 cosim_ekor_orang <- wordVectors::cosineSimilarity(vsm_with_ekor_all_mtx, vsm_with_orang_all_mtx)
@@ -210,7 +240,17 @@ cosim_ekor_orang_df |>
          `Cosine Similarity` = cossim) |> 
   select(-noun_compared) |> 
   write_tsv("stats_output/03-sample-cossime-database.tsv")
-  
+
+cosim_ekor_orang_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-ekor-orang.tsv")
+
 #### 2.1 Cosine similarities between nouns modified by "ekor" & "orang" AFFIXED forms =====
 cosim_ekor_orang_affixed <- wordVectors::cosineSimilarity(vsm_with_ekor_affixed_mtx, vsm_with_orang_affixed_mtx)
 cosim_ekor_orang_affixed_df <- cosim_ekor_orang_affixed |> 
@@ -222,6 +262,16 @@ cosim_ekor_orang_affixed_df <- cosim_ekor_orang_affixed |>
   mutate(noun_compared = "NounsAffixedForms with 'ekor' and 'orang'") |> 
   filter(noun_w_ekor != noun_w_orang) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor, noun_w_orang)), .keep_all = TRUE)
+
+cosim_ekor_orang_affixed_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-ekor-orang-affixed.tsv")
 
 #### 2.2 Cosine similarities between nouns modified by "ekor" & "orang" NON-AFFIXED forms =====
 cosim_ekor_orang_noaffix <- wordVectors::cosineSimilarity(vsm_with_ekor_noaffix_mtx, vsm_with_orang_noaffix_mtx)
@@ -235,6 +285,16 @@ cosim_ekor_orang_noaffix_df <- cosim_ekor_orang_noaffix |>
   filter(noun_w_ekor != noun_w_orang) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor, noun_w_orang)), .keep_all = TRUE)
 
+cosim_ekor_orang_noaffix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-ekor-orang-noaffixed.tsv")
+
 ### 3. Cosine similarities between nouns modified by "buah" & "orang" ALL forms =====
 cosim_buah_orang <- wordVectors::cosineSimilarity(vsm_with_buah_all_mtx, vsm_with_orang_all_mtx)
 cosim_buah_orang_df <- cosim_buah_orang |> 
@@ -246,6 +306,16 @@ cosim_buah_orang_df <- cosim_buah_orang |>
   mutate(noun_compared = "NounsAllForms with 'buah' and 'orang'") |> 
   filter(noun_w_orang != noun_w_buah) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah, noun_w_orang)), .keep_all = TRUE)
+
+cosim_buah_orang_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-buah-orang.tsv")
 
 #### 3.1 Cosine similarities between nouns modified by "buah" & "orang" AFFIXED forms =====
 cosim_buah_orang_affixed <- wordVectors::cosineSimilarity(vsm_with_buah_affixed_mtx, vsm_with_orang_affixed_mtx)
@@ -259,6 +329,16 @@ cosim_buah_orang_affixed_df <- cosim_buah_orang_affixed |>
   filter(noun_w_orang != noun_w_buah) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah, noun_w_orang)), .keep_all = TRUE)
 
+cosim_buah_orang_affixed_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-buah-orang-affixed.tsv")
+
 #### 3.2 Cosine similarities between nouns modified by "buah" & "orang" NON-AFFIXED forms =====
 cosim_buah_orang_noaffix <- wordVectors::cosineSimilarity(vsm_with_buah_noaffix_mtx, vsm_with_orang_noaffix_mtx)
 cosim_buah_orang_noaffix_df <- cosim_buah_orang_noaffix |> 
@@ -270,6 +350,16 @@ cosim_buah_orang_noaffix_df <- cosim_buah_orang_noaffix |>
   mutate(noun_compared = "NounsNoAffixForms with 'buah' and 'orang'") |> 
   filter(noun_w_orang != noun_w_buah) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah, noun_w_orang)), .keep_all = TRUE)
+
+cosim_buah_orang_noaffix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/09-cossim-full-buah-orang-noaffixed.tsv")
 
 ### 4. Cosine similarities between nouns modified by "ekor" ALL forms =====
 cosim_ekor_only <- wordVectors::cosineSimilarity(vsm_with_ekor_all_mtx, vsm_with_ekor_all_mtx)
@@ -283,6 +373,16 @@ cosim_ekor_only_df <- cosim_ekor_only |>
   filter(noun_w_ekor != noun_w_ekor_only) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor, noun_w_ekor_only)), .keep_all = TRUE)
 
+cosim_ekor_only_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-ekor-all-forms.tsv")
+
 #### 4.1 Cosine similarities between nouns modified by "ekor" NON-AFFIXED vs. AFFIXED forms =====
 cosim_ekor_noaffix_vs_affix <- wordVectors::cosineSimilarity(vsm_with_ekor_noaffix_mtx, vsm_with_ekor_affixed_mtx)
 cosim_ekor_noaffix_vs_affix_df <- cosim_ekor_noaffix_vs_affix |> 
@@ -295,6 +395,16 @@ cosim_ekor_noaffix_vs_affix_df <- cosim_ekor_noaffix_vs_affix |>
   filter(noun_w_ekor_noaffix != noun_w_ekor_affixed) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor_noaffix, noun_w_ekor_affixed)), .keep_all = TRUE)
 
+cosim_ekor_noaffix_vs_affix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-ekor-noaffix-affix.tsv")
+
 #### 4.2 Cosine similarities between nouns modified by "ekor" NON-AFFIXED =====
 cosim_ekor_noaffix <- wordVectors::cosineSimilarity(vsm_with_ekor_noaffix_mtx, vsm_with_ekor_noaffix_mtx)
 cosim_ekor_noaffix_df <- cosim_ekor_noaffix |> 
@@ -306,6 +416,16 @@ cosim_ekor_noaffix_df <- cosim_ekor_noaffix |>
   mutate(noun_compared = "Nouns with 'ekor' No-Affix") |> 
   filter(noun_w_ekor_noaffix1 != noun_w_ekor_noaffix2) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor_noaffix1, noun_w_ekor_noaffix2)), .keep_all = TRUE)
+
+cosim_ekor_noaffix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-ekor-noaffix-noaffix.tsv")
   
 #### 4.3 Cosine similarities between nouns modified by "ekor" AFFIXED =====
 cosim_ekor_affixed <- wordVectors::cosineSimilarity(vsm_with_ekor_affixed_mtx, vsm_with_ekor_affixed_mtx)
@@ -319,6 +439,15 @@ cosim_ekor_affixed_df <- cosim_ekor_affixed |>
   filter(cossim != 1, noun_w_ekor_affixed1 != noun_w_ekor_affixed2) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_ekor_affixed1, noun_w_ekor_affixed2)), .keep_all = TRUE)
 
+cosim_ekor_affixed_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-ekor-affix-affix.tsv")
 
 ### 5. Cosine similarities between nouns modified by "buah" ALL forms =====
 cosim_buah_only <- wordVectors::cosineSimilarity(vsm_with_buah_all_mtx, vsm_with_buah_all_mtx)
@@ -332,6 +461,16 @@ cosim_buah_only_df <- cosim_buah_only |>
   filter(noun_w_buah != noun_w_buah_only) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah, noun_w_buah_only)), .keep_all = TRUE)
 
+cosim_buah_only_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-buah-all-forms.tsv")
+
 #### 5.1 Cosine similarities between nouns modified by "buah" NON-AFFIXED vs. AFFIXED forms =====
 cosim_buah_noaffix_vs_affix <- wordVectors::cosineSimilarity(vsm_with_buah_noaffix_mtx, vsm_with_buah_affixed_mtx)
 cosim_buah_noaffix_vs_affix_df <- cosim_buah_noaffix_vs_affix |> 
@@ -343,6 +482,16 @@ cosim_buah_noaffix_vs_affix_df <- cosim_buah_noaffix_vs_affix |>
   mutate(noun_compared = "Nouns with 'buah' No-Affix vs. Affix") |> 
   filter(noun_w_buah_noaffix != noun_w_buah_affixed) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah_noaffix, noun_w_buah_affixed)), .keep_all = TRUE)
+
+cosim_buah_noaffix_vs_affix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-buah-noaffix-affix.tsv")
 
 #### 5.2 Cosine similarities between nouns modified by "buah" NON-AFFIXED =====
 cosim_buah_noaffix <- wordVectors::cosineSimilarity(vsm_with_buah_noaffix_mtx, vsm_with_buah_noaffix_mtx)
@@ -356,6 +505,16 @@ cosim_buah_noaffix_df <- cosim_buah_noaffix |>
   filter(noun_w_buah_noaffix1 != noun_w_buah_noaffix2) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah_noaffix1, noun_w_buah_noaffix2)), .keep_all = TRUE)
 
+cosim_buah_noaffix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-buah-noaffix-noaffix.tsv")
+
 #### 5.3 Cosine similarities between nouns modified by "buah" AFFIXED =====
 cosim_buah_affixed <- wordVectors::cosineSimilarity(vsm_with_buah_affixed_mtx, vsm_with_buah_affixed_mtx)
 cosim_buah_affixed_df <- cosim_buah_affixed |> 
@@ -368,6 +527,15 @@ cosim_buah_affixed_df <- cosim_buah_affixed |>
   filter(cossim != 1, noun_w_buah_affixed1 != noun_w_buah_affixed2) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_buah_affixed1, noun_w_buah_affixed2)), .keep_all = TRUE)
 
+cosim_buah_affixed_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-buah-affix-affix.tsv")
 
 ### 6. Cosine similarities between nouns modified by "orang" ALL forms =====
 cosim_orang_only <- wordVectors::cosineSimilarity(vsm_with_orang_all_mtx, vsm_with_orang_all_mtx)
@@ -380,6 +548,16 @@ cosim_orang_only_df <- cosim_orang_only |>
   mutate(noun_compared = "NounsAllForms with 'orang' and 'orang'") |> 
   filter(noun_w_orang != noun_w_orang_only) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_orang, noun_w_orang_only)), .keep_all = TRUE)
+
+cosim_orang_only_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-orang-all-forms.tsv")
 
 cosim_orang_only_df |> 
   # arrange(desc(cossim)) |> 
@@ -403,6 +581,16 @@ cosim_orang_noaffix_vs_affix_df <- cosim_orang_noaffix_vs_affix |>
   filter(noun_w_orang_noaffix != noun_w_orang_affixed) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_orang_noaffix, noun_w_orang_affixed)), .keep_all = TRUE)
 
+cosim_orang_noaffix_vs_affix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-orang-noaffix-affix.tsv")
+
 #### 6.2 Cosine similarities between nouns modified by "orang" NON-AFFIXED =====
 cosim_orang_noaffix <- wordVectors::cosineSimilarity(vsm_with_orang_noaffix_mtx, vsm_with_orang_noaffix_mtx)
 cosim_orang_noaffix_df <- cosim_orang_noaffix |> 
@@ -414,6 +602,16 @@ cosim_orang_noaffix_df <- cosim_orang_noaffix |>
   mutate(noun_compared = "Nouns with 'orang' No-Affix") |> 
   filter(noun_w_orang_noaffix1 != noun_w_orang_noaffix2) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_orang_noaffix1, noun_w_orang_noaffix2)), .keep_all = TRUE)
+
+cosim_orang_noaffix_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-orang-noaffix-noaffix.tsv")
 
 #### 6.3 Cosine similarities between nouns modified by "orang" AFFIXED =====
 cosim_orang_affixed <- wordVectors::cosineSimilarity(vsm_with_orang_affixed_mtx, vsm_with_orang_affixed_mtx)
@@ -427,6 +625,23 @@ cosim_orang_affixed_df <- cosim_orang_affixed |>
   filter(noun_w_orang_affixed1 != noun_w_orang_affixed2) |>  # filter out identical word for it has cosine score of 1 (perfect similarity)
   distinct(across(-c(noun_w_orang_affixed1, noun_w_orang_affixed2)), .keep_all = TRUE)
 
+cosim_orang_affixed_df |> 
+  # arrange(desc(cossim)) |> 
+  # slice_max(order_by = cossim, n = 10) |> 
+  mutate(cossim = round(cossim, 2)) |>
+  # rename(`Nouns modified by EKOR` = noun_w_ekor,
+  #        `Nouns modified by ORANG` = noun_w_orang,
+  #        `Cosine Similarity` = cossim) |> 
+  select(-noun_compared) |>
+  write_tsv("stats_output/10-cossim-full-only-orang-affix-affix.tsv")
+
+## Total cosim database ====
+
+dfs <- dir("stats_output", pattern = "^(10|09)", full.names = TRUE)
+dfs_df <- map(dfs, read_tsv)
+dfs_df_nrow <- map_int(dfs_df, nrow)
+comparison_database <- data.frame(dbase = str_replace_all(basename(dfs), "\\-", "_"), n_items = dfs_df_nrow)
+write_tsv(comparison_database, "stats_output/11-cossim-full-number-of-comparison-items.tsv")
 
 
 ## Comparing the means of the Cosine Similarity ====
