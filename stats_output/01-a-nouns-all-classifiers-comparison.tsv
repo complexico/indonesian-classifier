@@ -1,16 +1,16 @@
 .y.	group1	group2	p	p.adj	p.format	p.signif	method
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *ORANG* only	1.3483593151620196e-248	6.699999999999995e-248	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* only	1.9847068828604912e-260	1.1999999999999994e-259	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *EKOR* and *ORANG*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* and *ORANG*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *EKOR* and *BUAH*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *ORANG* only	Nouns all forms with *BUAH* only	5.594372081769871e-4	5.6e-4	0.00056	***	Wilcoxon
-cossim	Nouns all forms with *ORANG* only	Nouns all forms with *EKOR* and *ORANG*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *ORANG* only	Nouns all forms with *BUAH* and *ORANG*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *ORANG* only	Nouns all forms with *EKOR* and *BUAH*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *BUAH* only	Nouns all forms with *EKOR* and *ORANG*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *BUAH* only	Nouns all forms with *BUAH* and *ORANG*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *BUAH* only	Nouns all forms with *EKOR* and *BUAH*	0	0	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *BUAH* and *ORANG*	4.446671778700881e-8	8.9e-8	4.4e-08	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	1.7625391254152634e-104	5.299999999999999e-104	< 2e-16	****	Wilcoxon
-cossim	Nouns all forms with *BUAH* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	3.8819317577552844e-159	1.5999999999999996e-158	< 2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *ORANG* only	4.951682506033784e-234	1.9999999999999988e-233	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* only	4.9886290465332e-289	2.9999999999999978e-288	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *EKOR* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *EKOR* and *BUAH*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *ORANG* only	Nouns all forms with *BUAH* only	9.3235075672109e-248	4.699999999999997e-247	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *ORANG* only	Nouns all forms with *EKOR* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *ORANG* only	Nouns all forms with *BUAH* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *ORANG* only	Nouns all forms with *EKOR* and *BUAH*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *BUAH* only	Nouns all forms with *EKOR* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *BUAH* only	Nouns all forms with *BUAH* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *BUAH* only	Nouns all forms with *EKOR* and *BUAH*	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *BUAH* and *ORANG*	4.169578825454329e-24	4.2e-24	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	5.942037802532816e-149	1.1999999999999997e-148	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *BUAH* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	1.0995161366573977e-173	3.299999999999999e-173	<2e-16	****	Wilcoxon

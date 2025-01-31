@@ -13,7 +13,8 @@ library(ggpubr)
 
 # noun vector was taken from fastext
 NounVector <- read.table("data/Indwords_output.txt", header = FALSE)
-colloc <- readRDS("data/Coll1R1R.rds")
+# colloc <- readRDS("data/Coll1R1R.rds")
+colloc <- readRDS("data/Coll1R1R_2_withoutinflection.rds") # after revision; excluding inflection
 colloc2 <- colloc |> 
   filter(!is.na(Freq))
 
@@ -240,6 +241,7 @@ cosim_ekor_orang_df |>
          `Cosine Similarity` = cossim) |> 
   select(-noun_compared) |> 
   write_tsv("stats_output/03-sample-cossime-database.tsv")
+  # Personal Note (GPWR): the output here is used in the paper for (now Table 5) captioned: Table 5. Example of entries for the Cosine Similarity between nouns modified by ekor and orang (sorted decreasingly by cosine similarity scores)
 
 cosim_ekor_orang_df |> 
   # arrange(desc(cossim)) |> 
@@ -679,8 +681,8 @@ cosim_compare_orang_buah_ekor_nounALLFORMS <- cosim_orang_only_df |>
                                                           "Nouns all forms with *EKOR* and *ORANG*",
                                                           "Nouns all forms with *BUAH* and *ORANG*",
                                                           "Nouns all forms with *EKOR* and *BUAH*")))
-# cosim_compare_orang_buah_ekor_nounALLFORMS_res <- PMCMRplus::kruskalTest(cossim ~ noun_compared, data = cosim_compare_orang_buah_ekor_nounALLFORMS)
-# cosim_compare_orang_buah_ekor_nounALLFORMS_res
+cosim_compare_orang_buah_ekor_nounALLFORMS_res <- PMCMRplus::kruskalTest(cossim ~ noun_compared, data = cosim_compare_orang_buah_ekor_nounALLFORMS)
+cosim_compare_orang_buah_ekor_nounALLFORMS_res # as reference results in the paper for the Global Kruskal-Wallis's
 # 
 # cosim_compare_orang_buah_ekor_nounALLFORMS_posthoc <- PMCMRplus::kwAllPairsNemenyiTest(cossim ~ noun_compared, 
 #                                                                                        data = cosim_compare_orang_buah_ekor_nounALLFORMS,
@@ -717,7 +719,7 @@ res_1_c |>
   # as.data.frame() |> 
   mutate(p = prettyNum(p, digits = 3),
          p.adj = prettyNum(p.adj, digits = 3)) |> 
-  write_tsv("stats_output/05-snippet-comparison-EKOR-vs-others.tsv")
+  write_tsv("stats_output/05-snippet-comparison-EKOR-vs-others.tsv") # Used in the paper for Table 6: "Wilcoxon Pairwise Comparison results between ekor and the other classifier types."
 
 res_1_c |> 
   filter(str_detect(group1, "ORANG.+only")) |> 
@@ -796,7 +798,7 @@ res_1_descriptivestats <- cosim_compare_orang_buah_ekor_nounALLFORMS |>
   as.data.frame() |> 
   arrange(desc(avg))
 res_1_descriptivestats |> 
-  write_tsv("stats_output/07-descriptive-stats-nouns-all.tsv")
+  write_tsv("stats_output/07-descriptive-stats-nouns-all.tsv") # used in descriptive stats in paragraph after figure 6
 
 ### 2. Kruskal Test for "orang" & "buah" AFFIXED vs NO AFFIX ========
 cosim_compare_orang_noun_AFFIXED_NOAFFIX <-  cosim_orang_affixed_df |>
@@ -847,7 +849,7 @@ kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAF
 # Kruskal-Wallis rank sum test
 # 
 # data:  cossim by noun_compared
-# Kruskal-Wallis chi-squared = 6493, df = 2, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 6162.8, df = 2, p-value < 2.2e-16
 
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAFFIX)$statistic
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAFFIX)$p.value
@@ -857,7 +859,7 @@ kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOA
 # Kruskal-Wallis rank sum test
 # 
 # data:  cossim by noun_compared
-# Kruskal-Wallis chi-squared = 1566.9, df = 2, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 1040.9, df = 2, p-value < 2.2e-16
 
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOAFFIX)$statistic
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOAFFIX)$p.value
@@ -874,6 +876,7 @@ res_affix_c |>
 #### d. Pairwise comparison for ALL groups ====
 res_affix_d <- compare_means(cossim ~ noun_compared, data = cosim_affix_compare, method = "wilcox.test", p.adjust.method = "holm")
 res_affix_d
+all(res_affix_d$p.adj < 0.0001) # used for the paragraph after Figure 7
 
 #### e. Finding the Descriptive Stats for Cosine Similarity comparison for data in Figure "02-boxplot-affixed-nonaffixed-buah-orang.png"
 cosim_affix_compare |> 

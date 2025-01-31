@@ -1,0 +1,195 @@
+freqlist_all <- readRDS("../data/freqlist_all.rds")
+head(freqlist_all)
+x = freqlist_all[grep("<b>_B--", freqlist_all$MorphInd),]
+head(x)
+x$Word
+grep("^se", x$Word, value = TRUE)
+freqlist_all <- readRDS("../data/freqlist_all.rds")#
+x = freqlist_all[grep("<b>_B--", freqlist_all$MorphInd),]#
+x$Word#
+grep("^se", x$Word, value = TRUE)#
+se = freqlist_all[grep("^se", freqlist_all$Word),]
+se
+se$Word[1:1000]
+se$Word[1001:2000]#
+#
+x_sortal = c("seorang", "seekor", "secubit", "seguni", "sebaldi", "sebatang",#
+             "sekeping", "seutas", "seutas", "sehelai", "sebutir", "sebiji", "seketul",#
+             "sebuah", "sebilah")#
+classifier = freqlist_all[freqlist_all$Word %in% x_sortal,]#
+classifier$Word
+word_count_newspapers <- sum(freqlist_all$FreqKoran)#
+word_count_magazine <- sum(freqlist_all$FreqMajalah)#
+word_count_shortstories <- sum(freqlist_all$FreqCerpen)#
+word_count_novels <- sum(freqlist_all$FreqNovel)#
+word_count_textbooks <- sum(freqlist_all$FreqBukuteks)#
+word_count_journals <- sum(freqlist_all$FreqJurnal)#
+word_count_theses <- sum(freqlist_all$FreqTA)#
+word_count_biographies <- sum(freqlist_all$FreqBiografi)#
+word_count_populars <- sum(freqlist_all$FreqPopuler)#
+word_count_laws <- sum(freqlist_all$FreqUU)#
+word_count_websites <- sum(freqlist_all$FreqLaman)#
+word_count_letters <- sum(freqlist_all$FreqSurat)#
+#
+# Provided data#
+data <- data.frame(#
+  genre = c("newspaper", "magazine", "shortstory", "novel", "textbook", "journal",#
+            "thesis", "biography", "popular", "law", "website", "formal letter"),#
+  occurrences = c(1514, 3693, 5910, 4307, 3739, 1684, 3269, 5152, 4686, 219, 750, 147)#
+)#
+#
+word_counts = c(1005100, 1679516, 1144885, 1224114, 1695519, 1627010,#
+                1584498, 1619354, 1725427, 1578599, 1348690, 1786336)#
+#
+# Assuming data$occurrences is your contingency table#
+total_observations <- sum(data$occurrences)#
+#
+# Calculate normalized frequency per 1,000 words#
+data$normalized_freq <- (data$occurrences / word_counts) * 1000#
+#
+# Output the data frame with normalized frequencies#
+print(data)#
+#
+# Find the row in the data frame with the lowest normalized frequency#
+row_with_lowest_freq <- data[which.min(data$normalized_freq), ]#
+#
+# Output the genre with the lowest normalized frequency of classifier occurrences#
+print(paste("The genre with the lowest normalized frequency of classifier occurrences is:",#
+            row_with_lowest_freq$genre,#
+            "with a frequency of",#
+            min(data$normalized_freq), "per 1,000 words."))
+freqlist_all <- readRDS("../data/freqlist_all.rds")#
+x = freqlist_all[grep("<b>_B--", freqlist_all$MorphInd),]#
+x$Word#
+grep("^se", x$Word, value = TRUE)#
+se = freqlist_all[grep("^se", freqlist_all$Word),]#
+se$Word[1:1000]#
+se$Word[1001:2000]#
+#
+x_sortal = c("seorang", "seekor", "secubit", "seguni", "sebaldi", "sebatang",#
+             "sekeping", "seutas", "seutas", "sehelai", "sebutir", "sebiji", "seketul",#
+             "sebuah", "sebilah")#
+classifier = freqlist_all[freqlist_all$Word %in% x_sortal,]#
+classifier$Word#
+## [1] "sebuah"   "seorang"  "seekor"   "sebatang" "sebutir"  "sebilah"  "sehelai" #
+## [8] "sekeping" "seutas"   "sebiji" #
+#
+#sum the frequencies#
+word_count_newspapers <- sum(freqlist_all$FreqKoran)#
+word_count_magazine <- sum(freqlist_all$FreqMajalah)#
+word_count_shortstories <- sum(freqlist_all$FreqCerpen)#
+word_count_novels <- sum(freqlist_all$FreqNovel)#
+word_count_textbooks <- sum(freqlist_all$FreqBukuteks)#
+word_count_journals <- sum(freqlist_all$FreqJurnal)#
+word_count_theses <- sum(freqlist_all$FreqTA)#
+word_count_biographies <- sum(freqlist_all$FreqBiografi)#
+word_count_populars <- sum(freqlist_all$FreqPopuler)#
+word_count_laws <- sum(freqlist_all$FreqUU)#
+word_count_websites <- sum(freqlist_all$FreqLaman)#
+word_count_letters <- sum(freqlist_all$FreqSurat)#
+#
+# Provided data#
+data <- data.frame(#
+  genre = c("newspaper", "magazine", "shortstory", "novel", "textbook", "journal",#
+            "thesis", "biography", "popular", "law", "website", "formal letter"),#
+  occurrences = c(1514, 3693, 5910, 4307, 3739, 1684, 3269, 5152, 4686, 219, 750, 147)#
+)#
+#
+word_counts = c(1005100, 1679516, 1144885, 1224114, 1695519, 1627010,#
+                1584498, 1619354, 1725427, 1578599, 1348690, 1786336)#
+#
+# Assuming data$occurrences is your contingency table#
+total_observations <- sum(data$occurrences)#
+#
+# Calculate normalized frequency per 1,000 words#
+data$normalized_freq <- (data$occurrences / word_counts) * 1000#
+#
+# Output the data frame with normalized frequencies#
+print(data)#
+#
+# Find the row in the data frame with the lowest normalized frequency#
+row_with_lowest_freq <- data[which.min(data$normalized_freq), ]#
+#
+# Output the genre with the lowest normalized frequency of classifier occurrences#
+print(paste("The genre with the lowest normalized frequency of classifier occurrences is:",#
+            row_with_lowest_freq$genre,#
+            "with a frequency of",#
+            min(data$normalized_freq), "per 1,000 words."))#
+#
+# Find the row in the data frame with the highest normalized frequency#
+row_with_highest_freq <- data[which.max(data$normalized_freq), ]#
+#
+# Output the genre with the highest normalized frequency of classifier occurrences#
+print(paste("The genre with the highest normalized frequency of classifier occurrences is:",#
+            row_with_highest_freq$genre,#
+            "with a frequency of",#
+            max(data$normalized_freq), "per 1,000 words."))#
+#
+# Calculate the total number of occurrences and total word count#
+total_occurrences <- sum(data$occurrences)#
+total_word_count <- sum(word_counts)#
+#
+# Calculate expected occurrences for each genre#
+data$expected <- (word_counts / total_word_count) * total_occurrences#
+#
+# Convert expected counts to expected probabilities#
+expected_probabilities <- data$expected / total_occurrences#
+#
+# Perform the chi-squared test#
+chi_squared_test <- chisq.test(x = data$occurrences, p = expected_probabilities)#
+#
+# Output the results of the chi-squared test#
+chi_squared_test#
+## X-squared = 17529, df = 11, p-value < 2.2e-16#
+#
+# Install and load necessary package#
+install.packages("chisq.posthoc.test")#
+library(chisq.posthoc.test)#
+#
+# the chi-squared test is significant, perform post-hoc analysis with Holm-Bonferroni method#
+pairwise_results <- pairwise.prop.test(data$occurrences, word_counts, p.adjust.method = "holm")#
+# Print the results of the post-hoc analysis#
+print(pairwise_results)#
+# Calculate Cramér's V for effect size#
+#
+chi_squared_value <- 17529  # The chi-squared statistic (X-squared value)#
+df <- 11  # Degrees of freedom from your chi-squared test#
+#
+# Calculate the total number of observations (N) from your data#
+# N is the sum of all occurrences in your contingency table#
+N <- sum(data$occurrences)#
+#
+# Calculate Cramer's V#
+cramers_v <- sqrt(chi_squared_value / (N * min(df, (length(unique(data$genre)) - 1))))#
+#
+# Print the result#
+print(cramers_v)#
+#
+# Assuming 'data' is your data frame and it has the columns 'occurrences' and 'word_counts' for all genres#
+#
+normalized_frequencies <- (data$occurrences / word_counts) * 1000#
+#
+# Reorder 'genre' based on 'normalized_frequencies'#
+data$genre <- factor(data$genre, levels = data$genre[order(data$normalized_frequencies, decreasing = TRUE)])#
+X11()#
+dat2 = data[,c(1,3)]#
+dat2 = dat2[rev(order(dat2$normalized_freq)),]#
+barplot(dat2$normalized_freq,#
+        xlab = "Genre",#
+        ylab = "Normalized Frequency per 1000 Words",#
+        ylim = c(0,6),#
+        names.arg = dat2$genre,#
+        cex.lab = 1.3)
+dat = readRDS("../data/Coll1R1R.rds")
+head(dat)
+dat$TotalNumInCorpus = as.numeric(dat$TotalNumInCorpus)#
+#
+# noun collocation with minimum 1 occurence of orang#
+nrow(dat[dat$Classifier=="orang",])#
+#
+# noun collocation with minimum 1 occurence of ekor#
+nrow(dat[dat$Classifier=="ekor",])#
+#
+# noun collocation with minimum 1 occurence of buah#
+nrow(dat[dat$Classifier=="buah",])
+dat[dat$SearchFreq==3,]
