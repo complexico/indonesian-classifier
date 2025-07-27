@@ -5,3 +5,4 @@
 *.docx
 *.pdf
 script/Analysis.R
+data/

@@ -12,11 +12,14 @@ library(ggtext)
 library(ggpubr)
 
 # noun vector was taken from fastext
-NounVector <- read.table("data/Indwords_output.txt", header = FALSE)
+# NounVector <- read.table("data/Indwords_output.txt", header = FALSE)
+NounVector <- read.table("data/Indwords_output-2025.txt", header = FALSE) # Post-KIMLI
 # colloc <- readRDS("data/Coll1R1R.rds")
-colloc <- readRDS("data/Coll1R1R_2_withoutinflection.rds") # after revision; excluding inflection
+# colloc <- readRDS("data/Coll1R1R_2_withoutinflection.rds") # after revision; excluding inflection
+colloc <- readRDS("data/Coll1R1R_3_withoutinflection.rds") # 2025 after KIMLI 2025
 colloc2 <- colloc |> 
-  filter(!is.na(Freq))
+  filter(!is.na(Freq)) |> 
+  filter(Word != "utan")
 
 # Cosine Similarity Analysis ======
 ## retrieve the data (BUAH) =====
@@ -75,6 +78,7 @@ vsm_with_ekor_all_mtx <- vsm_with_ekor_all_df |>
 rownames(vsm_with_ekor_all_mtx) <- vsm_with_ekor_all_df$V1
 
 ### noun with EKOR affixed forms =====
+#### IMPORTANT! No data is available for affixed, collocated nouns of EKOR!
 noun_with_ekor_affixed <- colloc2 |> 
   filter(Classifier == "ekor", Affixed == "TRUE") |> 
   as_tibble()
@@ -177,6 +181,7 @@ cosim_ekor_buah_df |>
   write_tsv("stats_output/09-cossim-full-ekor-buah.tsv")
   
 #### 1.1 Cosine similarities between nouns modified by "ekor" & "buah" AFFIXED forms =====
+##### UPDATE: in the new data, there is no affixed noun collocates for "ekor", so no need to run this analyses
 cosim_ekor_buah_affixed <- wordVectors::cosineSimilarity(vsm_with_ekor_affixed_mtx, vsm_with_buah_affixed_mtx)
 cosim_ekor_buah_affixed_df <- cosim_ekor_buah_affixed |> 
   data.frame(row.names = rownames(cosim_ekor_buah_affixed)) |> 
@@ -254,6 +259,7 @@ cosim_ekor_orang_df |>
   write_tsv("stats_output/09-cossim-full-ekor-orang.tsv")
 
 #### 2.1 Cosine similarities between nouns modified by "ekor" & "orang" AFFIXED forms =====
+##### UPDATE: in the new data, there is no affixed noun collocates for "ekor", so no need to run this analyses
 cosim_ekor_orang_affixed <- wordVectors::cosineSimilarity(vsm_with_ekor_affixed_mtx, vsm_with_orang_affixed_mtx)
 cosim_ekor_orang_affixed_df <- cosim_ekor_orang_affixed |> 
   data.frame(row.names = rownames(cosim_ekor_orang_affixed)) |> 
@@ -386,6 +392,7 @@ cosim_ekor_only_df |>
   write_tsv("stats_output/10-cossim-full-only-ekor-all-forms.tsv")
 
 #### 4.1 Cosine similarities between nouns modified by "ekor" NON-AFFIXED vs. AFFIXED forms =====
+##### UPDATE: in the new data, there is no affixed noun collocates for "ekor", so no need to run this analyses
 cosim_ekor_noaffix_vs_affix <- wordVectors::cosineSimilarity(vsm_with_ekor_noaffix_mtx, vsm_with_ekor_affixed_mtx)
 cosim_ekor_noaffix_vs_affix_df <- cosim_ekor_noaffix_vs_affix |> 
   data.frame(row.names = rownames(cosim_ekor_noaffix_vs_affix)) |> 
@@ -430,6 +437,7 @@ cosim_ekor_noaffix_df |>
   write_tsv("stats_output/10-cossim-full-only-ekor-noaffix-noaffix.tsv")
   
 #### 4.3 Cosine similarities between nouns modified by "ekor" AFFIXED =====
+##### UPDATE: in the new data, there is no affixed noun collocates for "ekor", so no need to run this analyses
 cosim_ekor_affixed <- wordVectors::cosineSimilarity(vsm_with_ekor_affixed_mtx, vsm_with_ekor_affixed_mtx)
 cosim_ekor_affixed_df <- cosim_ekor_affixed |> 
   data.frame(row.names = rownames(cosim_ekor_affixed)) |> 
@@ -570,6 +578,7 @@ cosim_orang_only_df |>
          `Cosine Similarity` = cossim) |> 
   select(-noun_compared) |> 
   write_tsv("stats_output/04-sample-cossime-database-within-classifier-orang.tsv")
+### The above output `04-sample-cossime...` is for Table 1 in the manuscript
 
 #### 6.1 Cosine similarities between nouns modified by "orang" NON-AFFIXED vs. AFFIXED forms =====
 cosim_orang_noaffix_vs_affix <- wordVectors::cosineSimilarity(vsm_with_orang_noaffix_mtx, vsm_with_orang_affixed_mtx)
@@ -639,7 +648,8 @@ cosim_orang_affixed_df |>
 
 ## Total cosim database ====
 
-dfs <- dir("stats_output", pattern = "^(10|09)", full.names = TRUE)
+dfs <- dir("stats_output", pattern = "^(10|09)", full.names = TRUE) |> 
+  str_subset("ekor.+?\\-affix", negate = TRUE)
 dfs_df <- map(dfs, read_tsv)
 dfs_df_nrow <- map_int(dfs_df, nrow)
 comparison_database <- data.frame(dbase = str_replace_all(basename(dfs), "\\-", "_"), n_items = dfs_df_nrow)
@@ -682,9 +692,9 @@ cosim_compare_orang_buah_ekor_nounALLFORMS <- cosim_orang_only_df |>
                                                           "Nouns all forms with *BUAH* and *ORANG*",
                                                           "Nouns all forms with *EKOR* and *BUAH*")))
 cosim_compare_orang_buah_ekor_nounALLFORMS_res <- PMCMRplus::kruskalTest(cossim ~ noun_compared, data = cosim_compare_orang_buah_ekor_nounALLFORMS)
-cosim_compare_orang_buah_ekor_nounALLFORMS_res # as reference results in the paper for the Global Kruskal-Wallis's
+cosim_compare_orang_buah_ekor_nounALLFORMS_res # as reference results in the paper for the Global Kruskal-Wallis's (after Figure 8)
 # 
-# cosim_compare_orang_buah_ekor_nounALLFORMS_posthoc <- PMCMRplus::kwAllPairsNemenyiTest(cossim ~ noun_compared, 
+# cosim_compare_orang_buah_ekor_nounALLFORMS_posthoc <- PMCMRplus::kwAllPairsNemenyiTest(cossim ~ noun_compared,
 #                                                                                        data = cosim_compare_orang_buah_ekor_nounALLFORMS,
 #                                                                                        dist = "Chisquare")
 # summary(cosim_compare_orang_buah_ekor_nounALLFORMS_posthoc)
@@ -710,6 +720,8 @@ res_1_b |>
 #### c. Pairwise comparison ALL groups ====
 res_1_c <- ggpubr::compare_means(cossim ~ noun_compared, data = cosim_compare_orang_buah_ekor_nounALLFORMS, method = "wilcox.test", p.adjust.method = "holm")
 res_1_c
+dim(res_1_c)
+# [1] 15  8 <- this is the fifteen pairwise comparison mentioned in the manuscript after Figure 8
 res_1_c |> 
   write_tsv("stats_output/01-a-nouns-all-classifiers-comparison.tsv")
 res_1_c |> 
@@ -770,8 +782,13 @@ res_1_d |>
 #         legend.position = "right")
 
 
+# For Figure 8 in the manuscript
+cosim_avg_grp <- cosim_compare_orang_buah_ekor_nounALLFORMS |> 
+  group_by(noun_compared) |> 
+  summarise(avg = mean(cossim)) |> 
+  arrange(avg)
 cosim_compare_orang_buah_ekor_nounALLFORMS |>
-  mutate(noun_compared = fct_rev(noun_compared)) |>
+  mutate(noun_compared = factor(noun_compared, levels = cosim_avg_grp$noun_compared)) |>
   ggplot(aes(x = noun_compared, y = cossim)) +
   geom_boxplot(notch = TRUE) +
   coord_flip() +
@@ -786,15 +803,15 @@ ggsave("Figures/01-boxplot-classifiers-nouns.png",
        width = 8.5,
        height = 6,
        units = "in",
-       dpi = 600)
+       dpi = 600) # For Figure 8 in the manuscript
 
 ##### 1.2 descriptive statistics =====
 res_1_descriptivestats <- cosim_compare_orang_buah_ekor_nounALLFORMS |> 
   group_by(noun_compared) |> 
-  summarise(avg = round(mean(cossim), 4), 
-            sd = round(sd(cossim), 4), 
-            meds = round(median(cossim), 4), 
-            iqr = round(IQR(cossim), 4)) |> 
+  summarise(avg = round(mean(cossim), 2), 
+            sd = round(sd(cossim), 2), 
+            meds = round(median(cossim), 2), 
+            iqr = round(IQR(cossim), 2)) |> 
   as.data.frame() |> 
   arrange(desc(avg))
 res_1_descriptivestats |> 
@@ -846,20 +863,31 @@ res_affix_b <- compare_means(cossim ~ noun_compared, data = cosim_affix_compare,
 res_affix_b
 ##### b.1 for "buah" using kruskal.test from the stats package for comparison with compare_means()
 kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAFFIX)
+## the output is used in the description paragraph below Figure 9
 # Kruskal-Wallis rank sum test
 # 
 # data:  cossim by noun_compared
-# Kruskal-Wallis chi-squared = 6162.8, df = 2, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 6162.8, df = 2, p-value < 2.2e-16 <- OLD data after the first submission
+# Kruskal-Wallis rank sum test
+# 
+# data:  cossim by noun_compared
+# Kruskal-Wallis chi-squared = 21709, df = 2, p-value < 2.2e-16
 
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAFFIX)$statistic
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAFFIX)$p.value
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_buah_noun_AFFIXED_NOAFFIX)$parameter
 ##### b.2 for "orang" using kruskal.test from the stats package for comparison with compare_means()
 kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOAFFIX)
+## the output is used in the description paragraph below Figure 9
 # Kruskal-Wallis rank sum test
 # 
 # data:  cossim by noun_compared
-# Kruskal-Wallis chi-squared = 1040.9, df = 2, p-value < 2.2e-16
+# Kruskal-Wallis chi-squared = 1040.9, df = 2, p-value < 2.2e-16 <- OLD data after the first submission
+
+# Kruskal-Wallis rank sum test
+# 
+# data:  cossim by noun_compared
+# Kruskal-Wallis chi-squared = 15962, df = 2, p-value < 2.2e-16
 
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOAFFIX)$statistic
 # kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOAFFIX)$p.value
@@ -867,7 +895,8 @@ kruskal.test(cossim ~ noun_compared, data = cosim_compare_orang_noun_AFFIXED_NOA
 
 #### c. Pairwise comparison for per groups (i.e., by "buah" and "orang") ====
 res_affix_c <- compare_means(cossim ~ noun_compared, data = cosim_affix_compare, group.by = "condition_group", method = "wilcox.test", p.adjust.method = "holm")
-res_affix_c
+res_affix_c # used for the paragraph after Figure 9 for the pairwise comparison
+all(res_affix_c$p.adj < 0.0001)
 res_affix_c |> 
   write_tsv("stats_output/02-affixed-nonaffixed-pairwise-comparison.tsv")
 res_affix_c |> 
@@ -876,7 +905,7 @@ res_affix_c |>
 #### d. Pairwise comparison for ALL groups ====
 res_affix_d <- compare_means(cossim ~ noun_compared, data = cosim_affix_compare, method = "wilcox.test", p.adjust.method = "holm")
 res_affix_d
-all(res_affix_d$p.adj < 0.0001) # used for the paragraph after Figure 7
+all(res_affix_d$p.adj < 0.0001) # used for the paragraph after Figure 8
 
 #### e. Finding the Descriptive Stats for Cosine Similarity comparison for data in Figure "02-boxplot-affixed-nonaffixed-buah-orang.png"
 cosim_affix_compare |> 
@@ -918,7 +947,7 @@ ggsave("Figures/02-boxplot-affixed-nonaffixed-buah-orang.png",
        width = 9,
        height = 6,
        units = "in",
-       dpi = 600)
+       dpi = 600) # for Figure 9 in the manuscript
 
 
 
