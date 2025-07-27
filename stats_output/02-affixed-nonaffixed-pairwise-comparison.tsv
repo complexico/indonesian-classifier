@@ -1,7 +1,7 @@
 condition_group	.y.	group1	group2	p	p.adj	p.format	p.signif	method
-buah	cossim	Nouns all forms with *BUAH*	'Affixed' nouns with *BUAH*	0	0	< 2e-16	****	Wilcoxon
-buah	cossim	Nouns all forms with *BUAH*	'Non-Affixed' nouns with *BUAH*	5.063531802245602e-128	9.999999999999998e-128	< 2e-16	****	Wilcoxon
-buah	cossim	'Affixed' nouns with *BUAH*	'Non-Affixed' nouns with *BUAH*	0	0	< 2e-16	****	Wilcoxon
-orang	cossim	Nouns all forms with *ORANG*	'Affixed' nouns with *ORANG*	5.924982536457517e-197	2.3999999999999993e-196	< 2e-16	****	Wilcoxon
-orang	cossim	Nouns all forms with *ORANG*	'Non-Affixed' nouns with *ORANG*	6.241947248447379e-11	6.2e-11	6.2e-11	****	Wilcoxon
-orang	cossim	'Affixed' nouns with *ORANG*	'Non-Affixed' nouns with *ORANG*	4.252880187558487e-174	1.2999999999999997e-173	< 2e-16	****	Wilcoxon
+buah	cossim	Nouns all forms with *BUAH*	'Affixed' nouns with *BUAH*	0	0	<2e-16	****	Wilcoxon
+buah	cossim	Nouns all forms with *BUAH*	'Non-Affixed' nouns with *BUAH*	0	0	<2e-16	****	Wilcoxon
+buah	cossim	'Affixed' nouns with *BUAH*	'Non-Affixed' nouns with *BUAH*	0	0	<2e-16	****	Wilcoxon
+orang	cossim	Nouns all forms with *ORANG*	'Affixed' nouns with *ORANG*	0	0	<2e-16	****	Wilcoxon
+orang	cossim	Nouns all forms with *ORANG*	'Non-Affixed' nouns with *ORANG*	0	0	<2e-16	****	Wilcoxon
+orang	cossim	'Affixed' nouns with *ORANG*	'Non-Affixed' nouns with *ORANG*	0	0	<2e-16	****	Wilcoxon

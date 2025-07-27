@@ -1,6 +1,6 @@
 .y.	group1	group2	p	p.adj	p.format	p.signif	method
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *ORANG* only	4.95e-234	2e-233	<2e-16	****	Wilcoxon
-cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* only	4.99e-289	3e-288	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *ORANG* only	0	0	<2e-16	****	Wilcoxon
+cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* only	0	0	<2e-16	****	Wilcoxon
 cossim	Nouns all forms with *EKOR* only	Nouns all forms with *EKOR* and *ORANG*	0	0	<2e-16	****	Wilcoxon
 cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* and *ORANG*	0	0	<2e-16	****	Wilcoxon
 cossim	Nouns all forms with *EKOR* only	Nouns all forms with *EKOR* and *BUAH*	0	0	<2e-16	****	Wilcoxon

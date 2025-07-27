@@ -1,7 +1,7 @@
 condition_group	.y.	group1	group2	p	p.adj	p.format	p.signif	method
-Within one classifier	cossim	Nouns all forms with *EKOR* only	Nouns all forms with *ORANG* only	4.951682506033784e-234	1.9999999999999988e-233	<2e-16	****	Wilcoxon
-Within one classifier	cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* only	4.9886290465332e-289	2.9999999999999978e-288	<2e-16	****	Wilcoxon
-Within one classifier	cossim	Nouns all forms with *ORANG* only	Nouns all forms with *BUAH* only	9.3235075672109e-248	4.699999999999997e-247	<2e-16	****	Wilcoxon
-Between classifiers	cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *BUAH* and *ORANG*	4.169578825454329e-24	4.2e-24	<2e-16	****	Wilcoxon
-Between classifiers	cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	5.942037802532816e-149	1.1999999999999997e-148	<2e-16	****	Wilcoxon
-Between classifiers	cossim	Nouns all forms with *BUAH* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	1.0995161366573977e-173	3.299999999999999e-173	<2e-16	****	Wilcoxon
+Within one classifier	cossim	Nouns all forms with *EKOR* only	Nouns all forms with *ORANG* only	0	0	<2e-16	****	Wilcoxon
+Within one classifier	cossim	Nouns all forms with *EKOR* only	Nouns all forms with *BUAH* only	0	0	<2e-16	****	Wilcoxon
+Within one classifier	cossim	Nouns all forms with *ORANG* only	Nouns all forms with *BUAH* only	3.76606350158769e-31	3.8e-31	<2e-16	****	Wilcoxon
+Between classifiers	cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *BUAH* and *ORANG*	0	0	<2e-16	****	Wilcoxon
+Between classifiers	cossim	Nouns all forms with *EKOR* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	5.807630749726895e-136	1.1999999999999996e-135	<2e-16	****	Wilcoxon
+Between classifiers	cossim	Nouns all forms with *BUAH* and *ORANG*	Nouns all forms with *EKOR* and *BUAH*	0	0	<2e-16	****	Wilcoxon

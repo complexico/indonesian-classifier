@@ -1,11 +1,11 @@
 Nouns modified by EKOR	Nouns modified by ORANG	Cosine Similarity
-makhluk	manusia	0.76
-raja	ratu	0.66
 hewan	makhluk	0.66
-raja	pangeran	0.66
-bayi	balita	0.66
 hewan	manusia	0.66
-anak	bayi	0.65
-orang	anak	0.64
-pahlawan	pejuang	0.64
-merpati	burung	0.64
+harimau	macan	0.65
+binatang	manusia	0.64
+binatang	makhluk	0.61
+hewan	mahluk	0.61
+singa	raja	0.57
+ikan	nelayan	0.56
+binatang	mahluk	0.56
+ikan	tuna	0.55
